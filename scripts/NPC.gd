@@ -1,10 +1,7 @@
 extends KinematicBody2D
 
-var player
-
-
 var life = 100
-var MAX_SPEED = 350
+var MAX_SPEED = 750
 
 var heColisionado
 var alerted = false
@@ -58,3 +55,10 @@ func _on_AlertArea_area_entered(enemy):
 	print("Hello")
 	alerted = true
 	currentEnemy = enemy
+
+
+func _on_ScapeArea_area_exited(enemy):
+	print("Bye")
+	if enemy == currentEnemy:
+		alerted = false
+	
