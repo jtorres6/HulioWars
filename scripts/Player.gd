@@ -62,16 +62,16 @@ func _physics_process(delta):
 		direction.y = input_direction.y
 			
 	# y orientation:
-	if Input.is_action_pressed('ui_up'):
+	if Input.is_key_pressed(KEY_W):
 		input_direction.y = -1
-	elif Input.is_action_pressed('ui_down'):
+	elif Input.is_key_pressed(KEY_S):
 		input_direction.y = 1
 	else:
 		input_direction.y = 0
 	
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_key_pressed(KEY_A):
 		input_direction.x = -1
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_key_pressed(KEY_D):
 		input_direction.x = 1
 	else:
 		input_direction.x = 0
@@ -97,8 +97,8 @@ func _physics_process(delta):
 	speed_y = clamp(speed_y, 0, MAX_SPEED)
 	
 	# Set velocity vector and move player:
-	velocity.x = speed_x * direction
-	velocity.y = speed_y * direction
+	velocity.x = speed_x * direction.x
+	velocity.y = speed_y * direction.y
 	move_and_slide(velocity, Vector2(0,-1))
 	
 """
