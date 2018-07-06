@@ -21,7 +21,7 @@ const DECELERATION = 2000
 
 #********** Another control params *******************
 
-# var canIShoot
+
 
 #*****************************************************
 
@@ -34,29 +34,11 @@ func _ready():
 func _input(event):
 	pass
 
-""" FUTURE POSSIBLE USE?
-func InstanceBullet():
-	# FIXME:
-	var bullet = ammoArray[currentAmmo].instance()
-	bullet.ydirection = y_orientation
-	
-	if y_orientation:
-		bullet.xdirection = 0
-	else:
-		bullet.xdirection = facing_direction
-
-	bullet.position = self.position
-	$ShootDelay.wait_time = bullet.delay
-	get_parent().add_child(bullet)
-	$ShootDelay.start()
-"""
-
 func _physics_process(delta):
 
 	# Check movement orientation:
 	if input_direction.x:
 		direction.x = input_direction.x
-		facing_direction = input_direction.x
 		
 	if input_direction.y:
 		direction.y = input_direction.y
@@ -100,14 +82,3 @@ func _physics_process(delta):
 	velocity.x = speed_x * direction.x
 	velocity.y = speed_y * direction.y
 	move_and_slide(velocity, Vector2(0,-1))
-	
-"""
-	# Shoot
-	if Input.is_action_pressed('ui_shoot') and canIShoot:
-		canIShoot = false
-		InstanceBullet()
-	
-
-func _on_ShootDelay_timeout():
-	canIShoot = true
-"""
