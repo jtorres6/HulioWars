@@ -1,26 +1,28 @@
 extends KinematicBody2D
 
-var player
-
-
 var life = 100
-var MAX_SPEED = 100
+var MAX_SPEED = 750
 
 var heColisionado
 var alerted = false
 var currentEnemy
+var nav 
 
 
 func _ready():
 	set_process(true)
 	heColisionado = false
+	nav = get_parent().get_node("Navigation2D")
 
 func _process(delta):
-	player = get_parent().get_node("Player")
 	
 	# Si el jugador esta en el radio de alerta del npc, ir a por el
 	if alerted:
-		print("Alertttttt")
+		var enemy = get_parent().get_node("Player")
+		var path = nav.get_simple_path(self.position, enemy.position, false)
+		var dist = self.position.distance_to(path[1])
+		
+		self.set_position(self.position.linear_interpolate(path[1], (MAX_SPEED*delta)/dist))
 	
 
 func _on_Area2D_body_entered(body):
@@ -53,3 +55,10 @@ func _on_AlertArea_area_entered(enemy):
 	print("Hello")
 	alerted = true
 	currentEnemy = enemy
+
+
+func _on_ScapeArea_area_exited(enemy):
+	print("Bye")
+	if enemy == currentEnemy:
+		alerted = false
+	
