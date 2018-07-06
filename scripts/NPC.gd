@@ -20,7 +20,7 @@ func _process(delta):
 	
 	# Si el jugador esta en el radio de alerta del npc, ir a por el
 	if alerted:
-		MoveToEnemy(currentEnemy)
+		print("Alertttttt")
 	
 
 func _on_Area2D_body_entered(body):
@@ -47,47 +47,9 @@ func _on_Area2D_body_entered(body):
 func _on_Timer_timeout():
 	heColisionado = false
 	pass
-	
-
-func MoveToEnemy(enemy):
-	var enemyPos = enemy.position
-	var npcPos = self.position
-	var xdir = (enemyPos.x - npcPos.x)
-	var xdirection
-	var ydirection
-	var speedx
-	var speedy
-	
-	if(xdir < 0):
-		xdirection = -1
-		get_node("Sprite").flip_h = false
-	else:
-		xdirection = 1
-		get_node("Sprite").flip_h = true
-	
-	var ydir = (enemyPos.y - npcPos.y)
-	
-	if(ydir < 0):
-		ydirection = -1
-	else:
-		ydirection = 1
-	
-	speedx = abs((enemyPos.x - npcPos.x))
-	speedy = abs((enemyPos.y - npcPos.y))
-	speedx = clamp(speedx, 0, MAX_SPEED)
-	speedy = clamp(speedy, 0, MAX_SPEED)
-	
-	speedx = speedx * xdirection * delta
-	speedy = (speedy+25) * ydirection * delta
-	
-	var speedVector = Vector2(speedx, speedy)
-	
-	if(!heColisionado):
-		move_and_collide(speedVector)
-	else:
-		move_and_collide(speedVector * -3)
 
 
 func _on_AlertArea_area_entered(enemy):
+	print("Hello")
 	alerted = true
 	currentEnemy = enemy
