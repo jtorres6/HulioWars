@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/NPC.tscn" type="PackedScene" id=3]
+
+[sub_resource type="NavigationPolygon" id=1]
+
+vertices = PoolVector2Array( 730.682, 517.01, 1026.77, 600.545, -2.06448, 598.874, 363.242, 508.659, -0.394318, -0.721252, 58.0621, 102.83, 361.572, 151.24, 744.044, 152.91, 420.492, 0.948944, 1020.09, 2.61911, 917.743, 391.746, 744.044, 373.374 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5 ), PoolIntArray( 3, 2, 5, 6 ), PoolIntArray( 7, 6, 5, 8, 9 ), PoolIntArray( 7, 9, 10, 11 ) ]
+outlines = [ PoolVector2Array( -0.394318, -0.721252, 58.0621, 102.83, 420.492, 0.948944, 1020.09, 2.61911, 917.743, 391.746, 744.044, 373.374, 744.044, 152.91, 361.572, 151.24, 363.242, 508.659, 730.682, 517.01, 1026.77, 600.545, -2.06448, 598.874 ) ]
+
+[node name="MainScene" type="Node2D" index="0"]
+
+[node name="icon" type="Sprite" parent="." index="0"]
+
+position = Vector2( 551.973, 334.96 )
+scale = Vector2( 5.95003, 5.79345 )
+texture = ExtResource( 1 )
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="NPC" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 851.916, 303.279 )
+scale = Vector2( 1, 0.841694 )
+
+[node name="Navigation2D" type="Navigation2D" parent="." index="3"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D" index="0"]
+
+navpoly = SubResource( 1 )
+enabled = true
+
+[node name="TileMap" type="TileMap" parent="Navigation2D" index="1"]
+
+mode = 0
+tile_set = null
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray(  )
+
+
