@@ -1,13 +1,11 @@
 extends KinematicBody2D
 
 var life = 100
-var MAX_SPEED = 750
+var MAX_SPEED = 300
 
-var heColisionado
 var alerted = false
 var currentEnemy
 var nav 
-
 
 func _ready():
 	set_process(true)
@@ -62,3 +60,7 @@ func _on_ScapeArea_area_exited(enemy):
 	if enemy == currentEnemy:
 		alerted = false
 	
+
+
+func _on_Colision_body_entered(body):
+	print(body.name)

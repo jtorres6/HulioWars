@@ -1,22 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/NPC.gd" type="Script" id=1]
 [ext_resource path="res://sprites/crash.png" type="Texture" id=2]
-
-[sub_resource type="CircleShape2D" id=3]
-
-custom_solver_bias = 0.0
-radius = 10.0
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 10.0
 
 [node name="NPC" type="KinematicBody2D" index="0"]
 
@@ -42,7 +47,7 @@ audio_bus_name = "Master"
 
 position = Vector2( 12.2075, 4.53845 )
 scale = Vector2( 32.1867, 31.9721 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AlertArea" type="Area2D" parent="." index="1"]
 
@@ -60,7 +65,7 @@ audio_bus_name = "Master"
 
 position = Vector2( -0.314264, -0.196774 )
 scale = Vector2( 0.453292, 0.502845 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Visuals" type="Node2D" parent="." index="2"]
 
@@ -74,10 +79,28 @@ texture = ExtResource( 2 )
 
 position = Vector2( -1.49984, -1.99993 )
 scale = Vector2( 4.11539, 4.15385 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+
+[node name="Colision" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colision" index="0"]
+
+position = Vector2( -2.60164, -1.81953 )
+scale = Vector2( 3.40275, 3.22896 )
+shape = SubResource( 4 )
 
 [connection signal="area_exited" from="ScapeArea" to="." method="_on_ScapeArea_area_exited"]
 
 [connection signal="area_entered" from="AlertArea" to="." method="_on_AlertArea_area_entered"]
+
+[connection signal="body_entered" from="Colision" to="." method="_on_Colision_body_entered"]
 
 
