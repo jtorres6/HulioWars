@@ -43,7 +43,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="NPC2" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 1450, 930 )
+position = Vector2( -1340, 930 )
 scale = Vector2( 1, 0.841694 )
 _sections_unfolded = [ "Collision", "collision" ]
 

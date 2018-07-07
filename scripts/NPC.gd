@@ -6,7 +6,7 @@ const DAMAGE = 20
 var life
 var alerted
 var comeback
-#var walkAround
+var walkAround
 var currentEnemy
 var onHitDelay
 var onWalkDelay
@@ -22,7 +22,7 @@ func _ready():
 	onWalkDelay = false
 	alerted = false
 	comeback = false
-#	walkAround = true
+	walkAround = true
 	life = 100
 	
 	originalPosition = self.position
@@ -41,24 +41,27 @@ func _process(delta):
 		goal = currentEnemy.position
 	elif comeback:		
 		goal = originalPosition
-#	elif walkAround and !onWalkDelay:
-#		goal = RandomGoal(position)
-#		print(goal)
 
-	if alerted or comeback: # (walkAround and !onWalkDelay)
-		var path = nav.get_simple_path(self.position, goal, false)
+	if alerted or comeback or walkAround: # (walkAround and !onWalkDelay)
+		var path = [position]
+		
+		if walkAround:
+			for i in range(1,3):
+				path.append(RandomGoal(path.back()))
+			path.append(originalPosition)
+		else:
+			path = nav.get_simple_path(self.position, goal, false)
 		
 		if path.size() > 0:
 			for i in range(1, path.size()):
 				var dist = self.position.distance_to(path[i])
-				self.set_position(self.position.linear_interpolate(path[i], (MAX_SPEED*delta)/dist))
 				
-				if comeback and dist < 0.01:
+				if dist > 0:
+					self.set_position(self.position.linear_interpolate(path[i], (MAX_SPEED*delta)/dist))
+				
+				if comeback and dist < 0.1:
 					comeback = false
-#					walkAround = true
-#				elif walkAround:
-#					onWalkDelay = true
-#					get_node("RndWalkTimer").start()
+					walkAround = true
 
 
 func _on_Colision_body_entered(body):	
@@ -80,7 +83,7 @@ func _on_ScapeArea_body_exited(enemy):
 	if enemy == currentEnemy:
 		currentEnemy = null
 		alerted = false
-#		walkAround = false
+		walkAround = false
 		comeback = true
 
 
@@ -90,12 +93,12 @@ func _on_AlertArea_body_entered(enemy):
 		currentEnemy = enemy
 		alerted = true
 		comeback = false
-#		walkAround = false
+		walkAround = false
 
 
 func RandomGoal(originalPos):
-	var rndX = randi()%1500+300
-	var rndY = randi()%1500+300
+	var rndX = randi()%2400+1000
+	var rndY = randi()%2400+1000
 	var neg1 = randi()%2
 	var neg2 = randi()%2
 	
