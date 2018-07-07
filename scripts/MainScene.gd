@@ -6,7 +6,11 @@ extends Node2D
 onready var screen_size = OS.get_window_size()
 onready var player = get_node("Player")
 
+var enemiesInMap = 0
+
+
 const spawnZones = [[-1440, 700], [960, 700], [960, 960], [-1400, 960], [-1600, 0], [0, 1000]]
+const maxEnemiesInMap = 20
 
 func _ready():
 	# Initializes the camera, sets its position to that of the player
@@ -27,10 +31,32 @@ func update_camera():
 	get_viewport().set_canvas_transform(canvas_transform)
 
 func _on_SpawnTimer_timeout():
-	var npc = load("res://scenes/NPC.tscn")
-	var newNpc = npc.instance()
-	var rndPos = spawnZones[randi()%spawnZones.size()]
+	if enemiesInMap < maxEnemiesInMap:
+		var npc = load("res://scenes/NPC.tscn")
+		var newNpc = npc.instance()
+		var randIndx = randi()%spawnZones.size()
+		var rndPos = spawnZones[randIndx]
+		
+		newNpc.position = RandomPosition(Vector2(rndPos[0], rndPos[1]))
+		newNpc.originalPosition = newNpc.position
+		
+		self.add_child(newNpc)
+		enemiesInMap += 1
+
+
+func RandomPosition(originalPos):
+	var rndX = randi()%30+5
+	var rndY = randi()%30+5
+	var neg1 = randi()%2
+	var neg2 = randi()%2
 	
-	newNpc.position = Vector2(rndPos[0], rndPos[1])
-	newNpc.originalPosition = newNpc.position
-	self.add_child(newNpc)
+	if neg1 == 0:
+		rndX *= -1
+		
+	if neg2 == 0:
+		rndY *= -1
+	
+	var goalX = originalPos.x + rndX
+	var goalY = originalPos.y + rndY
+	
+	return Vector2(goalX, goalY)
