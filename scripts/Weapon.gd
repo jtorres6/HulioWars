@@ -5,6 +5,7 @@ var player
 var bullet_scene
 var canShot = true
 var canMochazo = true
+var playerAngle = 0
 
 func _ready():
 	bullet_scene = load('res://scenes/Projectile.tscn')
@@ -46,12 +47,14 @@ func _process(delta):
 	mouse_position = get_global_mouse_position()
 	get_node("Sprite").look_at(mouse_position)
 	var local_pos = ParseToLocal(mouse_position)
-	var angle = abs(rad2deg(local_pos.angle()))
+	var angle = rad2deg(local_pos.angle())
+	playerAngle = angle
 	
-	if angle > 90:
+	
+	if abs(angle) > 90:
 		get_parent().facing_direction = -1
 		get_node('Sprite').flip_v = true
-	elif angle <= 90:
+	elif abs(angle) <= 90:
 		get_parent().facing_direction = 1
 		get_node('Sprite').flip_v = false
 

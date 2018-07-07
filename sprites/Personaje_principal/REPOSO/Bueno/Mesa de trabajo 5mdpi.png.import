@@ -1,0 +1,29 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Mesa de trabajo 5mdpi.png-0ce04c9d5282a3a4dcd49bb523994e76.stex"
+
+[deps]
+
+source_file="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 5mdpi.png"
+dest_files=[ "res://.import/Mesa de trabajo 5mdpi.png-0ce04c9d5282a3a4dcd49bb523994e76.stex" ]
+
+[params]
+
+compress/mode=3
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DirectionManager.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/MetalSlug.png" type="Texture" id=3]
-[ext_resource path="res://scripts/Weapon.gd" type="Script" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 3mdpi.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 5mdpi.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 4mdpi.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 2mdpi.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 1mdpi.png" type="Texture" id=7]
+[ext_resource path="res://scripts/Weapon.gd" type="Script" id=8]
+[ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://scripts/AnimationsManager.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -29,8 +34,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( -3.94449, 0 )
+scale = Vector2( 1, 1.88985 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -44,16 +50,43 @@ __meta__ = {
 
 [node name="Visuals" type="Node2D" parent="." index="2"]
 
+[node name="Bueno" type="Node2D" parent="Visuals" index="0"]
+
 editor/display_folded = true
 
-[node name="Sprite" type="Sprite" parent="Visuals" index="0"]
+[node name="Lateral" type="Sprite" parent="Visuals/Bueno" index="0"]
 
-scale = Vector2( 0.187751, 0.187751 )
+visible = false
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
+
+[node name="45UP" type="Sprite" parent="Visuals/Bueno" index="1"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="45DOWN" type="Sprite" parent="Visuals/Bueno" index="2"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="UP" type="Sprite" parent="Visuals/Bueno" index="3"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="DOWN" type="Sprite" parent="Visuals/Bueno" index="4"]
+
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ShootDelay" type="Timer" parent="." index="3"]
 
@@ -80,7 +113,7 @@ autostart = false
 
 editor/display_folded = true
 position = Vector2( 9.93036, 0.273796 )
-script = ExtResource( 4 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -88,7 +121,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Weapon" index="0"]
 
-texture = ExtResource( 5 )
+visible = false
+texture = ExtResource( 9 )
 offset = Vector2( 20, 0 )
 _sections_unfolded = [ "Offset" ]
 __meta__ = {
@@ -120,12 +154,17 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
 
 [node name="Polygon2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 position = Vector2( -5.07911, 2.12807 )
 scale = Vector2( 3.28867, 2.15526 )
 shape = SubResource( 2 )
+
+[node name="AnimationsManager" type="Node2D" parent="." index="8"]
+
+script = ExtResource( 10 )
 
 [connection signal="timeout" from="ShootDelay" to="Weapon" method="_on_ShootDelay_timeout"]
 
