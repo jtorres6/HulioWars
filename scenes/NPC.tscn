@@ -79,8 +79,9 @@ _sections_unfolded = [ "Z Index" ]
 [node name="Sprite" type="Sprite" parent="Visuals" index="0"]
 
 position = Vector2( -1.49994, -1.99997 )
-scale = Vector2( 0.431508, 0.432433 )
+scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
