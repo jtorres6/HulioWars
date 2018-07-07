@@ -81,6 +81,7 @@ func _on_Colision_body_entered(body):
 		body.queue_free()
 		
 		if self.life <= 0:
+			get_parent().enemiesInMap -= 1
 			self.queue_free()
 	
 	elif body.name == "Player" and !onHitDelay and self.rol != body.rol: # == Player is unusefull
