@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/MainScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/NPC.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/Mockup escenario.png" type="Texture" id=4]
+[ext_resource path="res://scenes/DayNightManager.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -42,7 +43,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="NPC2" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( -1200, 910 )
+position = Vector2( 1450, 930 )
 scale = Vector2( 1, 0.841694 )
 _sections_unfolded = [ "Collision", "collision" ]
 
@@ -107,5 +108,12 @@ enabled = true
 
 navpoly = SubResource( 3 )
 enabled = true
+
+[node name="DayNightManager" parent="." index="8" instance=ExtResource( 5 )]
+
+position = Vector2( -740, -690 )
+scale = Vector2( 6.59375, 5.1875 )
+z_index = 1
+_sections_unfolded = [ "Z Index" ]
 
 

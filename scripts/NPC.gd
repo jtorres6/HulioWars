@@ -6,8 +6,10 @@ const DAMAGE = 20
 var life
 var alerted
 var comeback
+#var walkAround
 var currentEnemy
 var onHitDelay
+var onWalkDelay
 var nav 
 var rol
 var originalPosition
@@ -17,8 +19,10 @@ func _ready():
 	nav = get_parent().get_node("Navigation2D")
 	rol = randi()%2 # TODO: Make it balanced more enemyes tan colleges
 	onHitDelay = false
+	onWalkDelay = false
 	alerted = false
 	comeback = false
+#	walkAround = true
 	life = 100
 	
 	originalPosition = self.position
@@ -32,13 +36,16 @@ func _ready():
 func _process(delta):
 	var goal
 	
-	# Si el jugador esta en el radio de alerta del npc, ir a por el
+	# Si el jugador esta en el radio de alerta del npc, ir a por els
 	if alerted:
 		goal = currentEnemy.position
 	elif comeback:		
 		goal = originalPosition
+#	elif walkAround and !onWalkDelay:
+#		goal = RandomGoal(position)
+#		print(goal)
 
-	if alerted or comeback:
+	if alerted or comeback: # (walkAround and !onWalkDelay)
 		var path = nav.get_simple_path(self.position, goal, false)
 		
 		if path.size() > 0:
@@ -48,9 +55,10 @@ func _process(delta):
 				
 				if comeback and dist < 0.01:
 					comeback = false
-
-func _on_Timer_timeout():
-	onHitDelay = false
+#					walkAround = true
+#				elif walkAround:
+#					onWalkDelay = true
+#					get_node("RndWalkTimer").start()
 
 
 func _on_Colision_body_entered(body):	
@@ -64,7 +72,7 @@ func _on_Colision_body_entered(body):
 	elif body.name == "Player" and !onHitDelay and self.rol != body.rol: # == Player is unusefull
 		body.life -= DAMAGE
 		onHitDelay = true
-		get_node("Timer").start()
+		get_node("HitTimer").start()
 
 
 func _on_ScapeArea_body_exited(enemy):
@@ -72,6 +80,7 @@ func _on_ScapeArea_body_exited(enemy):
 	if enemy == currentEnemy:
 		currentEnemy = null
 		alerted = false
+#		walkAround = false
 		comeback = true
 
 
@@ -81,3 +90,28 @@ func _on_AlertArea_body_entered(enemy):
 		currentEnemy = enemy
 		alerted = true
 		comeback = false
+#		walkAround = false
+
+
+func RandomGoal(originalPos):
+	var rndX = randi()%1500+300
+	var rndY = randi()%1500+300
+	var neg1 = randi()%2
+	var neg2 = randi()%2
+	
+	if neg1 == 0:
+		rndX *= -1
+		
+	if neg2 == 0:
+		rndY *= -1
+	
+	var goalX = position.x + rndX
+	var goalY = position.y + rndY
+	
+	return Vector2(goalX, goalY)
+
+func _on_HitTimer_timeout():
+	onHitDelay = false
+
+func _on_RndWalkTimer_timeout():
+	onWalkDelay = false

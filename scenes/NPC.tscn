@@ -109,10 +109,17 @@ scale = Vector2( 3.40275, 3.22896 )
 shape = SubResource( 4 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Timer" type="Timer" parent="." index="5"]
+[node name="HitTimer" type="Timer" parent="." index="5"]
 
 process_mode = 1
 wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="RndWalkTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 5.0
 one_shot = false
 autostart = false
 
@@ -122,6 +129,8 @@ autostart = false
 
 [connection signal="body_entered" from="Colision" to="." method="_on_Colision_body_entered"]
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
+
+[connection signal="timeout" from="RndWalkTimer" to="." method="_on_RndWalkTimer_timeout"]
 
 
