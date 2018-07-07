@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "textvar"
 var time = 20
-var day = false
+var day = true
 
 func _ready():
 	$Timer.wait_time = 30

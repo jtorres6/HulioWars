@@ -88,7 +88,7 @@ _sections_unfolded = [ "Smoothing" ]
 [node name="Mockup escenario" type="Sprite" parent="." index="6"]
 
 position = Vector2( -80, -20 )
-z_index = -1
+z_index = -5
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Z Index" ]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DirectionManager.gd" type="Script" id=2]
@@ -7,9 +7,14 @@
 [ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 4mdpi.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 2mdpi.png" type="Texture" id=6]
 [ext_resource path="res://sprites/Personaje_principal/REPOSO/Bueno/Mesa de trabajo 1mdpi.png" type="Texture" id=7]
-[ext_resource path="res://scripts/Weapon.gd" type="Script" id=8]
-[ext_resource path="res://icon.png" type="Texture" id=9]
-[ext_resource path="res://scripts/AnimationsManager.gd" type="Script" id=10]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 8mdpi.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 10mdpi.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 9mdpi.png" type="Texture" id=10]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 7mdpi.png" type="Texture" id=11]
+[ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 6mdpi.png" type="Texture" id=12]
+[ext_resource path="res://scripts/Weapon.gd" type="Script" id=13]
+[ext_resource path="res://sprites/Personaje_principal/Personaje_Arma-02.png" type="Texture" id=14]
+[ext_resource path="res://scripts/AnimationsManager.gd" type="Script" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -52,8 +57,6 @@ __meta__ = {
 
 [node name="Bueno" type="Node2D" parent="Visuals" index="0"]
 
-editor/display_folded = true
-
 [node name="Lateral" type="Sprite" parent="Visuals/Bueno" index="0"]
 
 visible = false
@@ -88,6 +91,43 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="Malo" type="Node2D" parent="Visuals" index="1"]
+
+[node name="Lateral2" type="Sprite" parent="Visuals/Malo" index="0"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="45UP2" type="Sprite" parent="Visuals/Malo" index="1"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="45DOWN2" type="Sprite" parent="Visuals/Malo" index="2"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="UP2" type="Sprite" parent="Visuals/Malo" index="3"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 11 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="DOWN2" type="Sprite" parent="Visuals/Malo" index="4"]
+
+visible = false
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 12 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="ShootDelay" type="Timer" parent="." index="3"]
 
 process_mode = 1
@@ -111,9 +151,8 @@ autostart = false
 
 [node name="Weapon" type="Node2D" parent="." index="6"]
 
-editor/display_folded = true
 position = Vector2( 9.93036, 0.273796 )
-script = ExtResource( 8 )
+script = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -121,13 +160,12 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Weapon" index="0"]
 
-visible = false
-texture = ExtResource( 9 )
-offset = Vector2( 20, 0 )
-_sections_unfolded = [ "Offset" ]
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( -9.93036, 9.7262 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 14 )
+centered = false
+offset = Vector2( -480, -500 )
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
 [node name="MeleeAtack" type="Area2D" parent="Weapon/Sprite" index="0"]
 
@@ -164,7 +202,7 @@ shape = SubResource( 2 )
 
 [node name="AnimationsManager" type="Node2D" parent="." index="8"]
 
-script = ExtResource( 10 )
+script = ExtResource( 15 )
 
 [connection signal="timeout" from="ShootDelay" to="Weapon" method="_on_ShootDelay_timeout"]
 
