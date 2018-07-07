@@ -6,9 +6,9 @@
 
 [sub_resource type="NavigationPolygon" id=1]
 
-vertices = PoolVector2Array( 730.682, 517.01, 1026.77, 600.545, -2.06448, 598.874, 363.242, 508.659, -0.394318, -0.721252, 58.0621, 102.83, 361.572, 151.24, 744.044, 152.91, 420.492, 0.948944, 1020.09, 2.61911, 917.743, 391.746, 744.044, 373.374 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5 ), PoolIntArray( 3, 2, 5, 6 ), PoolIntArray( 7, 6, 5, 8, 9 ), PoolIntArray( 7, 9, 10, 11 ) ]
-outlines = [ PoolVector2Array( -0.394318, -0.721252, 58.0621, 102.83, 420.492, 0.948944, 1020.09, 2.61911, 917.743, 391.746, 744.044, 373.374, 744.044, 152.91, 361.572, 151.24, 363.242, 508.659, 730.682, 517.01, 1026.77, 600.545, -2.06448, 598.874 ) ]
+vertices = PoolVector2Array( 730.682, 517.01, 1026.77, 600.545, -2.06448, 598.874, 363.242, 508.659, 361.572, 151.24, -0.394318, -0.721252, 191.433, -1.61006, 420.492, 0.948944, 744.044, 152.91, 1020.09, 2.61911, 917.743, 391.746, 744.044, 373.374 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5, 6 ), PoolIntArray( 4, 6, 7, 8 ), PoolIntArray( 8, 7, 9 ), PoolIntArray( 8, 9, 10, 11 ) ]
+outlines = [ PoolVector2Array( -0.394318, -0.721252, 191.433, -1.61006, 420.492, 0.948944, 1020.09, 2.61911, 917.743, 391.746, 744.044, 373.374, 744.044, 152.91, 361.572, 151.24, 363.242, 508.659, 730.682, 517.01, 1026.77, 600.545, -2.06448, 598.874 ) ]
 
 [node name="MainScene" type="Node2D" index="0"]
 
@@ -20,15 +20,42 @@ texture = ExtResource( 1 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
+[node name="Camera2D" type="Camera2D" parent="Player" index="5"]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Smoothing" ]
+
 [node name="NPC" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 851.916, 303.279 )
+position = Vector2( 457.408, 686.904 )
 scale = Vector2( 1, 0.841694 )
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="3"]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D" index="0"]
 
+position = Vector2( -1.36035, -1.36041 )
 navpoly = SubResource( 1 )
 enabled = true
 

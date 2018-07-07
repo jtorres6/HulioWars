@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var life = 100
-var MAX_SPEED = 10
+var MAX_SPEED = 300
 
 var heColisionado
 var alerted = false
