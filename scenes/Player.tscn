@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DirectionManager.gd" type="Script" id=2]
@@ -11,6 +11,12 @@
 custom_solver_bias = 0.0
 radius = 20.959
 height = 25.9857
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
 
 [node name="Player" type="KinematicBody2D" index="0"]
 
@@ -73,6 +79,22 @@ _sections_unfolded = [ "Offset" ]
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Polygon2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( -5.07911, 2.12807 )
+scale = Vector2( 3.28867, 2.15526 )
+shape = SubResource( 2 )
 
 [connection signal="timeout" from="ShootDelay" to="Weapon" method="_on_ShootDelay_timeout"]
 
