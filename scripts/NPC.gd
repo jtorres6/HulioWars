@@ -5,6 +5,7 @@ var MAX_SPEED = 300
 
 var alerted = false
 var currentEnemy
+var heColisionado
 var nav 
 
 func _ready():
