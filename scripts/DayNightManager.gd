@@ -34,4 +34,7 @@ func _process(delta):
 func _on_Timer_timeout():
 	day = !day
 	$Timer.start()
+	get_parent().get_node("SpawnTimer").stop()
+	get_parent().get_node("SpawnTimer").wait_time *= 0.20
+	get_parent().get_node("SpawnTimer").start()
 	pass # replace with function body

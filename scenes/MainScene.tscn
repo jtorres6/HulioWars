@@ -116,4 +116,13 @@ scale = Vector2( 6.59375, 5.1875 )
 z_index = 1
 _sections_unfolded = [ "Z Index" ]
 
+[node name="SpawnTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+
 

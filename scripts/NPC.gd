@@ -17,13 +17,24 @@ var originalPosition
 func _ready():
 	set_process(true)
 	nav = get_parent().get_node("Navigation2D")
-	rol = randi()%2 # TODO: Make it balanced more enemyes tan colleges
 	onHitDelay = false
 	onWalkDelay = false
 	alerted = false
 	comeback = false
 	walkAround = true
 	life = 100
+	
+	var rnd = randi()%4 # TODO: Make it balanced more enemyes tan colleges
+	if get_parent().get_node("DayNightManager").day:
+		if rnd < 2:
+			rol = 1 # Si es de dia, es mas probable ser punky
+		else:
+			rol = 0
+	else:
+		if rnd < 2:
+			rol = 0 # Si es de noche, es mas probable ser poli
+		else:
+			rol = 1
 	
 	originalPosition = self.position
 	
