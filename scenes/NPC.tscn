@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/NPC.gd" type="Script" id=1]
-[ext_resource path="res://sprites/crash.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Policia_Macarras/Polis/POLI_FRENTEmdpi.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Policia_Macarras/Macarras/PUNK_FRENTEmdpi.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -76,11 +77,17 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Visuals" type="Node2D" parent="." index="2"]
 
-[node name="Sprite" type="Sprite" parent="Visuals" index="0"]
+[node name="Poli" type="Sprite" parent="Visuals" index="0"]
 
 position = Vector2( -1.49994, -1.99997 )
-scale = Vector2( 0.03, 0.03 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Punky" type="Sprite" parent="Visuals" index="1"]
+
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]

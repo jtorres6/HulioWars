@@ -35,7 +35,7 @@ func _on_SpawnTimer_timeout():
 		var randIndx = randi()%spawnZones.size()
 		var rndPos = spawnZones[randIndx]
 		
-		newNpc.position = RandomPosition(Vector2(rndPos[0], rndPos[1]))
+		newNpc.position = RandomPosition(Vector2(rndPos[0], rndPos[1]))		
 		newNpc.originalPosition = newNpc.position
 		
 		self.add_child(newNpc)

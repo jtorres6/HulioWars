@@ -4,6 +4,8 @@ extends KinematicBody2D
 
 var life = 100
 var rol = 0
+var scoreBoard = 0
+var score = [0, 0]
 
 #******** Direction and facing stuff ***************
 

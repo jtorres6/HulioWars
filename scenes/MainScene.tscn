@@ -94,6 +94,8 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="7"]
 
+editor/display_folded = true
+
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D" index="0"]
 
 navpoly = SubResource( 1 )

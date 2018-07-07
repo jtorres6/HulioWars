@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 const MAX_SPEED = 300
 const DAMAGE = 20
+const BONUS_FRIEND = -30
+const BONUS_ENEMY = 10
 
 var life
 var alerted
@@ -39,9 +41,11 @@ func _ready():
 	originalPosition = self.position
 	
 	if rol == 0:
-		self.get_node("Visuals/Sprite").texture = load("res://sprites/npc/police/police1.png")
+		self.get_node("Visuals/Poli").visible = true
+		self.get_node("Visuals/Punky").visible = false
 	else:
-		self.get_node("Visuals/Sprite").texture = load("res://sprites/npc/punk/punk1.png")
+		self.get_node("Visuals/Poli").visible = false
+		self.get_node("Visuals/Punky").visible = true
 
 
 func _process(delta):
@@ -50,6 +54,13 @@ func _process(delta):
 	# Si el jugador esta en el radio de alerta del npc, ir a por els
 	if alerted:
 		goal = currentEnemy.position
+		
+		if currentEnemy.rol == self.rol:
+			alerted = false
+			comeback = true
+			currentEnemy = null
+			
+		
 	elif comeback:		
 		goal = originalPosition
 
@@ -83,6 +94,18 @@ func _on_Colision_body_entered(body):
 		if self.life <= 0:
 			get_parent().enemiesInMap -= 1
 			self.queue_free()
+			var scoreBonus
+			var player = get_parent().get_node("Player")
+			
+			if player.rol == self.rol:
+				player.scoreBoard -= BONUS_FRIEND
+				player.score[(player.rol+1)%2] += BONUS_ENEMY
+			else:
+				player.scoreBoard += BONUS_ENEMY
+				player.score[player.rol] += BONUS_ENEMY
+				
+			print("ScoreBoard: ", player.scoreBoard)
+			print("Score: ", player.score)
 	
 	elif body.name == "Player" and !onHitDelay and self.rol != body.rol: # == Player is unusefull
 		body.life -= DAMAGE

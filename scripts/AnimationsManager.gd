@@ -29,12 +29,14 @@ func SelectAnimation():
 		badAnimations[i].visible = false
 	
 	if logicRoot.get_parent().get_node('DayNightManager').day:
+		logicRoot.rol = 0
 		for i in range(animations.size()):
 			if i == currentAnimation:
 				animations[i].visible = true
 			else:
 				animations[i].visible = false
 	else:
+		logicRoot.rol = 1
 		for i in range(animations.size()):
 			if i == currentAnimation:
 				badAnimations[i].visible = true
