@@ -62,8 +62,23 @@ wait_time = 0.15
 one_shot = false
 autostart = false
 
-[node name="Weapon" type="Node2D" parent="." index="4"]
+[node name="MochazoDelay" type="Timer" parent="." index="4"]
 
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="MochazoTimer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="Weapon" type="Node2D" parent="." index="6"]
+
+editor/display_folded = true
 position = Vector2( 9.93036, 0.273796 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
@@ -80,9 +95,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PlayerArea" type="Area2D" parent="." index="5"]
+[node name="MeleeAtack" type="Area2D" parent="Weapon/Sprite" index="0"]
 
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -91,13 +105,32 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="Polygon2D" type="CollisionShape2D" parent="PlayerArea" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Sprite/MeleeAtack" index="0"]
 
-visible = false
+build_mode = 0
+polygon = PoolVector2Array( 52.0214, 27.4111, 52.9017, -27.6047, 44.5393, -36.4072, 65.2252, -29.8053, 73.1475, -15.7213, 78.429, -0.316841, 73.1475, 17.2882, 63.9048, 31.8124, 47.6201, 40.1748 )
+
+[node name="Area2D" type="Area2D" parent="." index="7"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Polygon2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
 position = Vector2( -5.07911, 2.12807 )
 scale = Vector2( 3.28867, 2.15526 )
 shape = SubResource( 2 )
 
 [connection signal="timeout" from="ShootDelay" to="Weapon" method="_on_ShootDelay_timeout"]
+
+[connection signal="timeout" from="MochazoDelay" to="Weapon" method="_on_MochazoDelay_timeout"]
+
+[connection signal="timeout" from="MochazoTimer" to="Weapon" method="_on_MochazoTimer_timeout"]
 
 

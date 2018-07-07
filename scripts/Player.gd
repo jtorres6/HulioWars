@@ -3,6 +3,7 @@ extends KinematicBody2D
 #************* Player Parameters: ******************
 
 var life = 100
+var rol = 0
 
 #******** Direction and facing stuff ***************
 
@@ -82,3 +83,5 @@ func _physics_process(delta):
 	velocity.x = speed_x * direction.x
 	velocity.y = speed_y * direction.y
 	move_and_slide(velocity, Vector2(0,-1))
+	
+	get_parent().update_camera()

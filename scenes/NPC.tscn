@@ -40,33 +40,37 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 4
+collision_mask = 4
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScapeArea" index="0"]
 
-position = Vector2( 12.2075, 4.53845 )
-scale = Vector2( 32.1867, 31.9721 )
+position = Vector2( 33.4689, 16.0112 )
+scale = Vector2( 81.2667, 72.9141 )
 shape = SubResource( 1 )
 
 [node name="AlertArea" type="Area2D" parent="." index="1"]
 
-position = Vector2( 17.7975, 5.97306 )
+position = Vector2( -63.9181, -86.9142 )
 scale = Vector2( 37.6806, 33.5994 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 4
+collision_mask = 4
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlertArea" index="0"]
 
-position = Vector2( -0.314264, -0.196774 )
-scale = Vector2( 0.453292, 0.502845 )
+position = Vector2( 2.09915, 2.9577 )
+scale = Vector2( 1.09231, 0.964349 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Z Index" ]
 
@@ -104,10 +108,19 @@ scale = Vector2( 3.40275, 3.22896 )
 shape = SubResource( 4 )
 _sections_unfolded = [ "Z Index" ]
 
+[node name="Timer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
 [connection signal="body_exited" from="ScapeArea" to="." method="_on_ScapeArea_body_exited"]
 
 [connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]
 
 [connection signal="body_entered" from="Colision" to="." method="_on_Colision_body_entered"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

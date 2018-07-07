@@ -4,10 +4,13 @@ var mouse_position = Vector2()
 var player
 var bullet_scene
 var canShot = true
+var canMochazo = true
 
 func _ready():
 	bullet_scene = load('res://scenes/Projectile.tscn')
 	player = get_parent()
+	player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').disabled = true
+	player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').visible = false  #for debug
 	
 	
 func ParseToLocal(global_pos):
@@ -27,14 +30,20 @@ func InstanceBullet(shot_dir):
 	
 	
 func _input(event):
-	if event is InputEventMouseMotion:
-       mouse_position = event.position
-	elif event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.is_pressed():
-			InstanceBullet(event.position - player.position)
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.is_pressed() and canShot:
+			canShot = false
+			InstanceBullet(get_global_mouse_position() - player.position)
+		elif event.button_index == BUTTON_RIGHT and event.is_pressed() and canMochazo:
+			canMochazo = false
+			player.get_node('MochazoDelay').start()
+			player.get_node('MochazoTimer').start()
+			player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').disabled = false
+			player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').visible = true #for debug
 
 
 func _process(delta):
+	mouse_position = get_global_mouse_position()
 	get_node("Sprite").look_at(mouse_position)
 	var local_pos = ParseToLocal(mouse_position)
 	var angle = abs(rad2deg(local_pos.angle()))
@@ -48,3 +57,12 @@ func _process(delta):
 
 func _on_ShootDelay_timeout():
 	canShot = true
+
+
+func _on_MochazoDelay_timeout():
+	canMochazo = true
+
+
+func _on_MochazoTimer_timeout():
+	player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').disabled = true
+	player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').visible = false #for debug

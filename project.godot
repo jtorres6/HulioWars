@@ -14,6 +14,11 @@ config/name="HulioWars"
 run/main_scene="res://scenes/MainScene.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [editor_plugins]
 
 enabled=PoolStringArray( "net.kivano.fsm" )
