@@ -42,6 +42,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScapeArea" index="0"]
 
@@ -60,12 +61,14 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlertArea" index="0"]
 
 position = Vector2( -0.314264, -0.196774 )
 scale = Vector2( 0.453292, 0.502845 )
 shape = SubResource( 2 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Visuals" type="Node2D" parent="." index="2"]
 
@@ -88,18 +91,22 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 2
+collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colision" index="0"]
 
 position = Vector2( -2.60164, -1.81953 )
 scale = Vector2( 3.40275, 3.22896 )
 shape = SubResource( 4 )
+_sections_unfolded = [ "Z Index" ]
 
-[connection signal="area_exited" from="ScapeArea" to="." method="_on_ScapeArea_area_exited"]
+[connection signal="body_exited" from="ScapeArea" to="." method="_on_ScapeArea_body_exited"]
 
-[connection signal="area_entered" from="AlertArea" to="." method="_on_AlertArea_area_entered"]
+[connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]
 
 [connection signal="body_entered" from="Colision" to="." method="_on_Colision_body_entered"]
 

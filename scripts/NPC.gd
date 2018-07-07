@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
-var life = 100
-var MAX_SPEED = 300
+const MAX_SPEED = 300
+const DAMAGE = 20
 
-var alerted = false
+var life
+var alerted
 var currentEnemy
 var heColisionado
 var nav 
@@ -11,17 +12,19 @@ var nav
 func _ready():
 	set_process(true)
 	heColisionado = false
+	alerted = false
+	life = 100
 	nav = get_parent().get_node("Navigation2D")
 
 func _process(delta):
 	
 	# Si el jugador esta en el radio de alerta del npc, ir a por el
 	if alerted:
-		var enemy = get_parent().get_node("Player")
-		var path = nav.get_simple_path(self.position, enemy.position, false)
-		var dist = self.position.distance_to(path[1])
+		var path = nav.get_simple_path(self.position, currentEnemy.position, false)
 		
-		self.set_position(self.position.linear_interpolate(path[1], (MAX_SPEED*delta)/dist))
+		if path.size() > 0:
+			var dist = self.position.distance_to(path[1])
+			self.set_position(self.position.linear_interpolate(path[1], (MAX_SPEED*delta)/dist))
 	
 
 func _on_Area2D_body_entered(body):
@@ -49,19 +52,25 @@ func _on_Timer_timeout():
 	heColisionado = false
 	pass
 
+func _on_Colision_body_entered(body):
+	print("entra cuerpo ", body.name)
+	print(body.name.find("Projectile"))
+	
+	if body.name == "Player":
+		body.life -= DAMAGE
+	elif body.name.find("Projectile") != -1:
+		self.life -= body.damage
+		body.queue_free()
 
-func _on_AlertArea_area_entered(enemy):
-	print("Hello")
-	alerted = true
-	currentEnemy = enemy
 
-
-func _on_ScapeArea_area_exited(enemy):
-	print("Bye")
+func _on_ScapeArea_body_exited(enemy):
+	print("Bye ", enemy.name)
 	if enemy == currentEnemy:
 		alerted = false
-	
 
 
-func _on_Colision_body_entered(body):
-	print(body.name)
+func _on_AlertArea_body_entered(enemy):
+	print("Hello ", enemy.name)
+	if enemy.name == "Player":
+		alerted = true
+		currentEnemy = enemy

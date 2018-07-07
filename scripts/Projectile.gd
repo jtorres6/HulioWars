@@ -4,6 +4,7 @@ var damage = 50
 var xdirection
 var ydirection 
 var SPEED = 800
+var projectile = 1
 
 func _process(delta):
 	var speedx = SPEED

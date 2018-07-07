@@ -80,8 +80,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Area2D" type="Area2D" parent="." index="5"]
+[node name="PlayerArea" type="Area2D" parent="." index="5"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -90,8 +91,9 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="Polygon2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="Polygon2D" type="CollisionShape2D" parent="PlayerArea" index="0"]
 
+visible = false
 position = Vector2( -5.07911, 2.12807 )
 scale = Vector2( 3.28867, 2.15526 )
 shape = SubResource( 2 )

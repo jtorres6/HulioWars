@@ -48,7 +48,7 @@ _sections_unfolded = [ "Smoothing" ]
 
 [node name="NPC" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 457.408, 686.904 )
+position = Vector2( 701.255, 558.3 )
 scale = Vector2( 1, 0.841694 )
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="3"]
