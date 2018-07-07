@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/MainScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/NPC.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/Mockup escenario.png" type="Texture" id=4]
 [ext_resource path="res://scenes/DayNightManager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EdificioAntonio.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sounds/MJW8Cyberpunk_Game.wav" type="AudioStream" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -124,6 +126,21 @@ process_mode = 1
 wait_time = 5.0
 one_shot = false
 autostart = false
+
+[node name="EdificioAntonio" parent="." index="10" instance=ExtResource( 6 )]
+
+position = Vector2( -269.216, 190.399 )
+
+[node name="GameTheme" type="AudioStreamPlayer2D" parent="." index="11"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 

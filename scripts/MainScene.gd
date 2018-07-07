@@ -12,6 +12,8 @@ var enemiesInMap = 0
 
 func _ready():
 	# Initializes the camera, sets its position to that of the player
+	
+	$GameTheme.play()
 	update_camera()
 	$SpawnTimer.start()
 	# Instead of connecting the signal from the editor, we can do this via code. We connect from the player (using the player variable) to the camera (the self argument below).
