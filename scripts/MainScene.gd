@@ -6,7 +6,14 @@ extends Node2D
 onready var screen_size = OS.get_window_size()
 onready var player = get_node("Player")
 
-const spawnZones = [[-1440, 700], [960, 700], [960, 960], [-1400, 960], [-1600, 0], [0, 1000]]
+const spawnZones = [
+	[-1750, -780], [-1200, -640], [-1100, 800], [-700, 660], [-20, -800], [160, -800],
+	[650, -660], [960, -650], [1280, -660], [1500, -640], [1460, -10], [1250, -100],
+	[640, -20], [320, 40], [0, 0], [-180, 150], [-630, 30], [-1400, 60],
+	[1690, 30], [-1690, 830], [-1490, 900], [-1150, 820], [-960, 650], [-640, 950],
+	[-800, 340], [-620, 350], [470, 340], [670, 380], [800, 700], [640, 880],
+	[1600, 960], [1110, 880]
+]
 const maxEnemiesInMap = 20
 var enemiesInMap = 0
 
@@ -37,7 +44,7 @@ func _on_SpawnTimer_timeout():
 		var randIndx = randi()%spawnZones.size()
 		var rndPos = spawnZones[randIndx]
 		
-		newNpc.position = RandomPosition(Vector2(rndPos[0], rndPos[1]))		
+		newNpc.position = Vector2(rndPos[0], rndPos[1])		
 		newNpc.originalPosition = newNpc.position
 		
 		self.add_child(newNpc)

@@ -41,6 +41,8 @@ func _input(event):
 			player.get_node('MochazoTimer').start()
 			player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').disabled = false
 			player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').visible = true #for debug
+			get_node('Sprite/AnimatedSprite').play()
+			get_node('Sprite/AnimatedSprite').visible = true
 
 
 func _process(delta):
@@ -54,9 +56,11 @@ func _process(delta):
 	if abs(angle) > 90:
 		get_parent().facing_direction = -1
 		get_node('Sprite').flip_v = true
+		get_node("Sprite/AnimatedSprite").flip_v = true
 	elif abs(angle) <= 90:
 		get_parent().facing_direction = 1
 		get_node('Sprite').flip_v = false
+		get_node('Sprite/AnimatedSprite').flip_v = false
 
 func _on_ShootDelay_timeout():
 	canShot = true
@@ -69,3 +73,5 @@ func _on_MochazoDelay_timeout():
 func _on_MochazoTimer_timeout():
 	player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').disabled = true
 	player.get_node('Weapon/Sprite/MeleeAtack/CollisionPolygon2D').visible = false #for debug
+	get_node('Sprite/AnimatedSprite').stop()
+	get_node('Sprite/AnimatedSprite').visible = false

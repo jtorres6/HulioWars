@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="HulioWars"
-run/main_scene="res://scenes/MainScene.tscn"
+run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 
 [display]

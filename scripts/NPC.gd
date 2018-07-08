@@ -9,12 +9,14 @@ var life
 var alerted
 var comeback
 var walkAround
+var walkAroundSpeed = Vector2()
 var currentEnemy
 var onHitDelay
 var onWalkDelay
 var nav 
 var rol
 var originalPosition
+var heColisionado
 
 func _ready():
 	set_process(true)
@@ -24,6 +26,7 @@ func _ready():
 	alerted = false
 	comeback = false
 	walkAround = true
+	heColisionado = false
 	life = 100
 	
 	var rnd = randi()%4 # TODO: Make it balanced more enemyes tan colleges
@@ -42,48 +45,66 @@ func _ready():
 	
 	if rol == 0:
 		self.get_node("Visuals/Poli").visible = true
+		self.get_node("Visuals/Poli/PoliPorra").visible = true
 		self.get_node("Visuals/Punky").visible = false
+		self.get_node("Visuals/Punky/PunkyPorra").visible = false
 	else:
 		self.get_node("Visuals/Poli").visible = false
+		self.get_node("Visuals/Poli/PoliPorra").visible = false
 		self.get_node("Visuals/Punky").visible = true
+		self.get_node("Visuals/Punky/PunkyPorra").visible = true
 
 
-func _process(delta):
+func _physics_process(delta):
+	var playerPos = get_parent().get_node("Player").position
 	var goal
-	
-	# Si el jugador esta en el radio de alerta del npc, ir a por els
-	if alerted:
-		goal = currentEnemy.position
+	# Si el jugador esta en el radio de alerta del npc, ir a por el
+	if heColisionado:
+		var xdir = (playerPos.x - position.x)
+		var ydir = (playerPos.y - position.y)
+		var speedx = abs((playerPos.x - position.x))
+		var speedy = abs((playerPos.y - position.y))
+		speedx = clamp(speedx, 0, MAX_SPEED)
+		speedy = clamp(speedy, 0, MAX_SPEED)
 		
+		speedx = speedx * (-1 if xdir < 0 else 1) * delta
+		speedy = (speedy+25) * (-1 if ydir < 0 else 1) * delta
+		
+		move_and_collide(Vector2(speedx, speedy) * -1)
+		
+		return
+	elif alerted:
+		goal = currentEnemy.position
+	
 		if currentEnemy.rol == self.rol:
 			alerted = false
 			comeback = true
 			currentEnemy = null
-			
-		
-	elif comeback:		
+	      
+	elif comeback:    
 		goal = originalPosition
-
-	if alerted or comeback or walkAround: # (walkAround and !onWalkDelay)
+	
+	if alerted or comeback or walkAround:
 		var path = [position]
-		
+	
 		if walkAround:
-			for i in range(1,3):
-				path.append(RandomGoal(path.back()))
-			path.append(originalPosition)
+			if randf() < 0.01:
+				walkAroundSpeed.x = rand_range(-1, 1) * 4000 * delta
+				walkAroundSpeed.y = rand_range(-1, 1) * 4000 * delta
+			move_and_slide(walkAroundSpeed)
 		else:
 			path = nav.get_simple_path(self.position, goal, false)
 		
-		if path.size() > 0:
-			for i in range(1, path.size()):
-				var dist = self.position.distance_to(path[i])
-				
-				if dist > 0:
-					self.set_position(self.position.linear_interpolate(path[i], (MAX_SPEED*delta)/dist))
-				
-				if comeback and dist < 0.1:
-					comeback = false
-					walkAround = true
+			if path.size() > 0:
+				for i in range(1, path.size()):
+					var dist = self.position.distance_to(path[i])
+		    
+					if dist > 0:
+						self.set_position(self.position.linear_interpolate(path[i], (MAX_SPEED*delta)/dist))
+		    
+					if comeback and dist < 5:
+						comeback = false
+						walkAround = true
 
 
 func _on_Colision_body_entered(body):	
@@ -107,14 +128,13 @@ func _on_Colision_body_entered(body):
 			print("ScoreBoard: ", player.scoreBoard)
 			print("Score: ", player.score)
 	
-	elif body.name == "Player" and !onHitDelay and self.rol != body.rol: # == Player is unusefull
-		body.life -= DAMAGE
-		onHitDelay = true
-		get_node("HitTimer").start()
+#	elif body.name == "Player" and !onHitDelay and self.rol != body.rol: # == Player is unusefull
+#		body.life -= DAMAGE
+#		onHitDelay = true
+#		get_node("HitTimer").start()
 
 
 func _on_ScapeArea_body_exited(enemy):
-	print("Bye ", enemy.name)
 	if enemy == currentEnemy:
 		currentEnemy = null
 		alerted = false
@@ -123,7 +143,6 @@ func _on_ScapeArea_body_exited(enemy):
 
 
 func _on_AlertArea_body_entered(enemy):
-	print("Hello ", enemy.name)
 	if enemy.name == "Player" and enemy.rol != self.rol:
 		currentEnemy = enemy
 		alerted = true
@@ -150,6 +169,7 @@ func RandomGoal(originalPos):
 
 func _on_HitTimer_timeout():
 	onHitDelay = false
+	heColisionado = false
 
 func _on_RndWalkTimer_timeout():
 	onWalkDelay = false
