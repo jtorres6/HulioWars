@@ -87,3 +87,8 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector2(0,-1))
 	
 	get_parent().update_camera()
+
+
+func _on_AudioStreamPlayer2D_finished():
+	$AudioStreamPlayer2D.play()
+	pass # replace with function body

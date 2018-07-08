@@ -6,7 +6,7 @@ var start
 var end
 
 func _ready():
-	$Timer.wait_time = 30
+	$Timer.wait_time = 60
 	$Timer.start()
 	pass
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Suelo_Mapa.png-4df5f64345c4a99b0831fb656491b6e6.stex"
+path="res://.import/Suelo_Mapa_noche.png-1429f1cbf1db06a7714a2544e701a68e.stex"
 
 [deps]
 
-source_file="res://sprites/Suelo_Mapa.png"
-dest_files=[ "res://.import/Suelo_Mapa.png-4df5f64345c4a99b0831fb656491b6e6.stex" ]
+source_file="res://sprites/ciudad/Suelo_Mapa_noche.png"
+dest_files=[ "res://.import/Suelo_Mapa_noche.png-1429f1cbf1db06a7714a2544e701a68e.stex" ]
 
 [params]
 

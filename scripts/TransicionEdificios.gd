@@ -6,7 +6,7 @@ var start
 var end
 
 func _ready():
-	$Timer.wait_time = 30
+	$Timer.wait_time = 60
 	$Timer.start()
 	get_node("Iluminacion").enabled = false
 	pass
@@ -22,7 +22,7 @@ func _process(delta):
 			#$Sprite1.modulate[3] = 1.0
 			$Sprite2.modulate[3] = 0.0
 	else:
-		if $Timer.time_left <= $Timer.wait_time - 5:
+		if $Timer.time_left <= $Timer.wait_time:
 			$Sprite3.modulate[3] = 1.0
 			$Iluminacion.enabled = true
 			
@@ -31,7 +31,8 @@ func _process(delta):
 			$Iluminacion.energy = 1.0*$Timer.time_left /20.0
 			#$Sprite1.modulate[3] = (1.0 - 1.0*$Timer.time_left /20.0)
 			
-			if $Timer.time_left < 10:
+			
+			if $Timer.time_left < 15:
 				$Sprite3.modulate[3] = 0.0
 				$Sprite2.modulate[3] = 1.0*$Timer.time_left /20.0
 				$Iluminacion.enabled = false

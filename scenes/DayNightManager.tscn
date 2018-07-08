@@ -13,7 +13,7 @@ script = ExtResource( 1 )
 
 position = Vector2( 787.829, 548.709 )
 scale = Vector2( 2.77938, 2.17162 )
-enabled = true
+enabled = false
 editor_only = false
 texture = ExtResource( 2 )
 offset = Vector2( 0, 0 )

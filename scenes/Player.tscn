@@ -210,7 +210,7 @@ script = ExtResource( 15 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="9"]
 
 stream = ExtResource( 16 )
-volume_db = -0.13
+volume_db = -20.02
 pitch_scale = 1.0
 autoplay = true
 max_distance = 2000.0
@@ -223,5 +223,7 @@ area_mask = 1
 [connection signal="timeout" from="MochazoDelay" to="Weapon" method="_on_MochazoDelay_timeout"]
 
 [connection signal="timeout" from="MochazoTimer" to="Weapon" method="_on_MochazoTimer_timeout"]
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
 
 

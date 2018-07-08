@@ -7,7 +7,7 @@ var time = 20
 var day = true
 
 func _ready():
-	$Timer.wait_time = 30
+	$Timer.wait_time = 60
 	$Timer.start()
 	get_node("Node2D/Light2D").energy = 1.0
 	print(time)
@@ -33,6 +33,7 @@ func _process(delta):
 
 func _on_Timer_timeout():
 	day = !day
+	$Timer.wait_time = 60
 	$Timer.start()
 	get_parent().get_node("SpawnTimer").stop()
 	get_parent().get_node("SpawnTimer").wait_time *= 0.20
