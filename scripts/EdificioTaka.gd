@@ -12,11 +12,16 @@ func _ready():
 
 func _process(delta):
 #	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-	get_node("Sprite1").material.set_shader_param("time", $Timer.time_left)
-	get_node("Sprite1").material.set_shader_param("day", day)
-	get_node("Sprite2").material.set_shader_param("time", $Timer.time_left)
-	get_node("Sprite2").material.set_shader_param("day", day)
+	if day:
+		if $Timer.time_left < 20:
+			#$Sprite1.modulate[3] = 1.0*$Timer.time_left /20.0
+			$Sprite2.modulate[3] = (1.0 - 1.0*$Timer.time_left /20.0)
+		else:
+			#$Sprite1.modulate[3] = 1.0
+			$Sprite2.modulate[3] = 0.0
+	else:
+		if $Timer.time_left < 20:
+			$Sprite2.modulate[3] = 1.0*$Timer.time_left /20.0
 
 	pass
 	
