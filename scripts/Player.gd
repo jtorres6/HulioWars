@@ -106,6 +106,7 @@ func _on_Area2D_body_entered(body):
 			print("MUERTOOOOOOOOOO") # replace with function body
 
 func _on_MeleeAtack_body_entered(body):
+	print("MELEE ", body.name)
 	if body.name.find("NPC") != -1:
 		body.life -= MOCHAZO_DAMAGE
 		if body.life <= 0:

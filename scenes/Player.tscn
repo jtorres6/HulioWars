@@ -54,13 +54,10 @@ _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( 9.80562, 5.15981 )
-scale = Vector2( 2.30147, 1.88985 )
+position = Vector2( 7.26728, 5.52836 )
+scale = Vector2( 1.45368, 1.88985 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="DirectionManager" type="Node2D" parent="." index="1"]
 
@@ -71,6 +68,7 @@ __meta__ = {
 
 [node name="Visuals" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 z_index = 3
 _sections_unfolded = [ "Z Index" ]
 
@@ -207,14 +205,15 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Sprite/MeleeAtack" index="0"]
 
+position = Vector2( 49.7552, -14.7423 )
 build_mode = 0
 polygon = PoolVector2Array( 200, -250, 250, -100, 250, 50, 250, 150, 200, 250, 350, 200, 400, 100, 400, 1.90735e-005, 400, -100, 350, -200 )
 _sections_unfolded = [ "Z Index" ]
@@ -237,14 +236,16 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 4
+collision_mask = 4
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Polygon2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
-position = Vector2( -5.07911, 2.12807 )
-scale = Vector2( 3.28867, 2.15526 )
+position = Vector2( 5.97747, 3.60212 )
+scale = Vector2( 4.13918, 3.59744 )
 shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="9"]
@@ -260,6 +261,7 @@ area_mask = 1
 
 [node name="AnimationsManager" type="Node2D" parent="." index="10"]
 
+position = Vector2( 1.10567, 0 )
 script = ExtResource( 19 )
 
 [connection signal="timeout" from="ShootDelay" to="Weapon" method="_on_ShootDelay_timeout"]
@@ -269,6 +271,8 @@ script = ExtResource( 19 )
 [connection signal="timeout" from="MochazoTimer" to="Weapon" method="_on_MochazoTimer_timeout"]
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+
+[connection signal="body_entered" from="Weapon/Sprite/MeleeAtack" to="." method="_on_MeleeAtack_body_entered"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
