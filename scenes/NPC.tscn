@@ -26,11 +26,13 @@ radius = 10.0
 
 [node name="NPC" type="KinematicBody2D" index="0"]
 
+scale = Vector2( 0.65, 0.65 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ScapeArea" type="Area2D" parent="." index="0"]
 
