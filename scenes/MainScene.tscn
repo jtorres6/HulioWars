@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/MainScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,15 +7,17 @@
 [ext_resource path="res://scenes/DayNightManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sounds/MJW8Cyberpunk_Game.wav" type="AudioStream" id=6]
 [ext_resource path="res://sprites/ciudad/Ed5_Dentromapa NUEVO DIA.png" type="Texture" id=7]
-[ext_resource path="res://scenes/EdificioLustres.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/EdificioDoblao.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/EdificioAntonio.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/EdificioTaka.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/EdificioJamon.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/EdificioWilliam.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/EdificioNewi.tscn" type="PackedScene" id=14]
-[ext_resource path="res://sprites/ciudad/Ed6_Dentromapa NUEVO DIA.png" type="Texture" id=15]
-[ext_resource path="res://sprites/ciudad/Ed7_Dentromapa NUEVO DIA.png" type="Texture" id=16]
+[ext_resource path="res://sprites/Suelo_Mapa.png" type="Texture" id=8]
+[ext_resource path="res://Suelo_Mapa_noche.png" type="Texture" id=9]
+[ext_resource path="res://scenes/EdificioLustres.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/EdificioDoblao.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/EdificioAntonio.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/EdificioTaka.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/EdificioJamon.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/EdificioWilliam.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/EdificioNewi.tscn" type="PackedScene" id=16]
+[ext_resource path="res://sprites/ciudad/Ed6_Dentromapa NUEVO DIA.png" type="Texture" id=17]
+[ext_resource path="res://sprites/ciudad/Ed7_Dentromapa NUEVO DIA.png" type="Texture" id=18]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -95,6 +97,7 @@ _sections_unfolded = [ "Smoothing" ]
 
 [node name="Mockup escenario" type="Sprite" parent="." index="6"]
 
+visible = false
 position = Vector2( -80, -20 )
 z_index = -5
 texture = ExtResource( 4 )
@@ -149,234 +152,277 @@ area_mask = 1
 position = Vector2( -2166.57, -725.166 )
 texture = ExtResource( 7 )
 
-[node name="EdificioLustres5" parent="." index="12" instance=ExtResource( 8 )]
+[node name="Suelo_Mapa" type="Sprite" parent="." index="12"]
+
+position = Vector2( -62.5039, -6.12384 )
+scale = Vector2( 0.974678, 0.974678 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Suelo_Mapa_noche" type="Sprite" parent="." index="13"]
+
+position = Vector2( -62.5039, -6.12384 )
+scale = Vector2( 0.974678, 0.974678 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="EdificioLustres5" parent="." index="14" instance=ExtResource( 10 )]
 
 position = Vector2( -2786.33, -773.372 )
 scale = Vector2( 0.75, 0.75 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioDoblao" parent="." index="13" instance=ExtResource( 9 )]
+[node name="EdificioDoblao" parent="." index="15" instance=ExtResource( 11 )]
 
 position = Vector2( 285.868, 324.152 )
 rotation = -3.14159
 scale = Vector2( 0.5, -0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAntonio2" parent="." index="14" instance=ExtResource( 10 )]
+[node name="EdificioAntonio2" parent="." index="16" instance=ExtResource( 12 )]
 
 position = Vector2( -625.619, 573.474 )
 scale = Vector2( 0.6, 0.6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAntonio3" parent="." index="15" instance=ExtResource( 10 )]
+[node name="EdificioAntonio3" parent="." index="17" instance=ExtResource( 12 )]
 
 position = Vector2( -627.891, 762.112 )
 scale = Vector2( 0.6, 0.6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioTaka" parent="." index="16" instance=ExtResource( 11 )]
+[node name="EdificioTaka" parent="." index="18" instance=ExtResource( 13 )]
 
 position = Vector2( -413.117, 105.976 )
 rotation = -3.14159
 scale = Vector2( -0.6, -0.6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAntonio4" parent="." index="17" instance=ExtResource( 10 )]
+[node name="EdificioAntonio4" parent="." index="19" instance=ExtResource( 12 )]
 
 position = Vector2( 474.429, 986.764 )
 scale = Vector2( -0.6, 0.6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioLustres" parent="." index="18" instance=ExtResource( 8 )]
+[node name="EdificioLustres" parent="." index="20" instance=ExtResource( 10 )]
 
 position = Vector2( -869.494, 808.939 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="EdificioJamon2" parent="." index="19" instance=ExtResource( 11 )]
+[node name="EdificioJamon2" parent="." index="21" instance=ExtResource( 13 )]
 
 position = Vector2( -1071.2, -73.7716 )
 rotation = -3.14159
 scale = Vector2( 0.489851, -0.63289 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAntonio" parent="." index="20" instance=ExtResource( 10 )]
+[node name="EdificioAntonio" parent="." index="22" instance=ExtResource( 12 )]
 
 position = Vector2( -630.395, -45.7836 )
 scale = Vector2( -0.489851, 0.73289 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioJamon" parent="." index="21" instance=ExtResource( 12 )]
+[node name="EdificioJamon" parent="." index="23" instance=ExtResource( 14 )]
 
 position = Vector2( -1693.68, 293.586 )
 scale = Vector2( 0.489851, 0.53289 )
 
-[node name="EdificioDoblao2" parent="." index="22" instance=ExtResource( 9 )]
+[node name="EdificioDoblao2" parent="." index="24" instance=ExtResource( 11 )]
 
 position = Vector2( -2107.95, 249.653 )
 scale = Vector2( 0.489851, 0.63289 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAlto1" parent="." index="23" instance=ExtResource( 13 )]
+[node name="EdificioAlto1" parent="." index="25" instance=ExtResource( 15 )]
 
 position = Vector2( -2386.34, 243.429 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAntonio7" parent="." index="24" instance=ExtResource( 10 )]
+[node name="EdificioAntonio7" parent="." index="26" instance=ExtResource( 12 )]
 
 position = Vector2( 145.81, -1436.36 )
 rotation = 3.14159
 scale = Vector2( 0.7, -0.7 )
 
-[node name="EdificioJamon4" parent="." index="25" instance=ExtResource( 12 )]
+[node name="EdificioJamon4" parent="." index="27" instance=ExtResource( 14 )]
 
 position = Vector2( 629.903, -1477.9 )
 rotation = -3.14159
 scale = Vector2( 0.7, -0.7 )
 
-[node name="EdificioLustres3" parent="." index="26" instance=ExtResource( 8 )]
+[node name="EdificioLustres3" parent="." index="28" instance=ExtResource( 10 )]
 
 position = Vector2( 1129.69, -1858.83 )
 rotation = 3.14159
 scale = Vector2( 0.7, -0.7 )
 
-[node name="EdificioLustres4" parent="." index="27" instance=ExtResource( 8 )]
+[node name="EdificioLustres4" parent="." index="29" instance=ExtResource( 10 )]
 
 position = Vector2( 1615.97, -1764.31 )
 rotation = -3.14159
 scale = Vector2( 0.7, -0.7 )
 
-[node name="EdificioDoblao7" parent="." index="28" instance=ExtResource( 9 )]
+[node name="EdificioDoblao7" parent="." index="30" instance=ExtResource( 11 )]
 
 position = Vector2( 1125.8, -1430.99 )
 rotation = 3.14159
 scale = Vector2( 0.7, -0.7 )
 
-[node name="EdificioNewi6" parent="." index="29" instance=ExtResource( 14 )]
+[node name="EdificioNewi6" parent="." index="31" instance=ExtResource( 16 )]
 
 position = Vector2( -244.597, -1922.99 )
 scale = Vector2( -0.7, 0.7 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioNewi7" parent="." index="30" instance=ExtResource( 14 )]
+[node name="EdificioNewi7" parent="." index="32" instance=ExtResource( 16 )]
 
 position = Vector2( -726.283, -1929.33 )
 scale = Vector2( -0.7, 0.7 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioDoblao6" parent="." index="31" instance=ExtResource( 13 )]
+[node name="EdificioDoblao6" parent="." index="33" instance=ExtResource( 15 )]
 
 position = Vector2( 842.01, -1919.01 )
 scale = Vector2( 0.7, 0.7 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioTaka2" parent="." index="32" instance=ExtResource( 11 )]
+[node name="EdificioTaka2" parent="." index="34" instance=ExtResource( 13 )]
 
 position = Vector2( 882.981, -704.037 )
 scale = Vector2( 0.6, 0.6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioNewi" parent="." index="33" instance=ExtResource( 14 )]
+[node name="EdificioNewi" parent="." index="35" instance=ExtResource( 16 )]
 
 position = Vector2( -124.805, 743.265 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioDoblao5" parent="." index="34" instance=ExtResource( 9 )]
+[node name="EdificioDoblao5" parent="." index="36" instance=ExtResource( 11 )]
 
 position = Vector2( 1082.36, -638.42 )
 rotation = -3.14159
 scale = Vector2( 0.5, -0.45 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioAntonio6" parent="." index="35" instance=ExtResource( 10 )]
+[node name="EdificioAntonio6" parent="." index="37" instance=ExtResource( 12 )]
 
 position = Vector2( 1437.85, -638.565 )
 rotation = -3.14159
 scale = Vector2( 0.5, -0.45 )
 
-[node name="EdificioAntonio5" parent="." index="36" instance=ExtResource( 10 )]
+[node name="EdificioAntonio5" parent="." index="38" instance=ExtResource( 12 )]
 
 position = Vector2( 1437.85, -518.616 )
 rotation = -3.14159
 scale = Vector2( 0.5, -0.45 )
 
-[node name="EdificioDoblao4" parent="." index="37" instance=ExtResource( 9 )]
+[node name="EdificioDoblao4" parent="." index="39" instance=ExtResource( 11 )]
 
 position = Vector2( 1512.22, -26.4883 )
 scale = Vector2( -0.5, 0.45 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioJamon3" parent="." index="38" instance=ExtResource( 12 )]
+[node name="EdificioJamon3" parent="." index="40" instance=ExtResource( 14 )]
 
 position = Vector2( 1027.16, -39.3928 )
 scale = Vector2( 0.5, 0.45 )
 
-[node name="EdificioDoblao3" parent="." index="39" instance=ExtResource( 9 )]
+[node name="EdificioDoblao3" parent="." index="41" instance=ExtResource( 11 )]
 
 position = Vector2( 1160.89, 444.565 )
 scale = Vector2( 0.5, 0.45 )
 
-[node name="EdificioLustres2" parent="." index="40" instance=ExtResource( 8 )]
+[node name="EdificioLustres2" parent="." index="42" instance=ExtResource( 10 )]
 
 position = Vector2( 800.531, 238.644 )
 scale = Vector2( 0.5, 0.45 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioNewi5" parent="." index="41" instance=ExtResource( 14 )]
+[node name="EdificioNewi5" parent="." index="43" instance=ExtResource( 16 )]
 
 position = Vector2( 1425.32, -869.78 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioNewi4" parent="." index="42" instance=ExtResource( 14 )]
+[node name="EdificioNewi4" parent="." index="44" instance=ExtResource( 16 )]
 
 position = Vector2( 1425.32, -317.208 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioNewi3" parent="." index="43" instance=ExtResource( 14 )]
+[node name="EdificioNewi3" parent="." index="45" instance=ExtResource( 16 )]
 
 position = Vector2( 1425.32, -6.05731 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioTaka3" parent="." index="44" instance=ExtResource( 11 )]
+[node name="EdificioTaka3" parent="." index="46" instance=ExtResource( 13 )]
 
 position = Vector2( -1317.81, -672.094 )
 scale = Vector2( 0.6, 0.6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="EdificioNewi2" parent="." index="45" instance=ExtResource( 14 )]
+[node name="EdificioNewi2" parent="." index="47" instance=ExtResource( 16 )]
 
 position = Vector2( 1425.32, 302.824 )
 scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Ed6_Dentromapa NUEVO DIA2" type="Sprite" parent="." index="46"]
+[node name="Ed6_Dentromapa NUEVO DIA2" type="Sprite" parent="." index="48"]
 
 position = Vector2( -1884.79, -1125.76 )
 scale = Vector2( 0.97152, 0.857791 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
-[node name="Ed7_Dentromapa NUEVO DIA" type="Sprite" parent="." index="47"]
+[node name="Ed7_Dentromapa NUEVO DIA" type="Sprite" parent="." index="49"]
 
 position = Vector2( -1613.45, 1382.48 )
-texture = ExtResource( 16 )
+texture = ExtResource( 18 )
 
-[node name="Ed5_Dentromapa NUEVO DIA2" type="Sprite" parent="." index="48"]
+[node name="Ed5_Dentromapa NUEVO DIA2" type="Sprite" parent="." index="50"]
 
 position = Vector2( 1562.79, 1311.8 )
 texture = ExtResource( 7 )
 
-[node name="Ed6_Dentromapa NUEVO DIA3" type="Sprite" parent="." index="49"]
+[node name="Ed6_Dentromapa NUEVO DIA3" type="Sprite" parent="." index="51"]
 
 position = Vector2( 854.249, 1381.53 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
-[node name="Ed6_Dentromapa NUEVO DIA" type="Sprite" parent="." index="50"]
+[node name="Ed6_Dentromapa NUEVO DIA" type="Sprite" parent="." index="52"]
 
 position = Vector2( -901.659, 1380.84 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
+
+[node name="EdificioDoblao8" parent="." index="53" instance=ExtResource( 11 )]
+
+position = Vector2( -2195.41, -673.628 )
+scale = Vector2( 0.65, 0.65 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="EdificioDoblao9" parent="." index="54" instance=ExtResource( 11 )]
+
+position = Vector2( -1736.31, -673.628 )
+scale = Vector2( 0.65, 0.65 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="55"]
+
+visible = false
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -1812.39, -898.598, 1663.22, -921.893, 1663.22, -558.491, 423.926, -558.491, 423.926, -274.293, 461.198, -316.224, 787.328, -320.883, 787.328, -153.159, 1141.41, -153.159, 1141.41, -209.067, 1663.22, -213.726, 1663.22, 28.5422, 1556.06, 28.5422, 866.531, 47.1782, 866.531, 317.4, 1099.48, 308.082, 1104.14, 783.3, 1663.22, 773.982, 1663.22, 1067.5, 577.673, 1062.84, 568.355, 517.737, 363.359, 499.101, 363.359, 242.856, -51.2916, 247.515, -51.2916, 410.58, -368.104, 410.58, -368.104, 578.304, -512.532, 587.622, -517.191, 1058.18, -1807.73, 1053.52, -1807.73, 760.005, -1793.76, 713.415, -1052.98, 718.074, -1052.98, 559.668, -1062.29, 508.419, -927.183, 508.419, -922.524, 84.4503, -1695.92, 79.7914, -1807.73, -22.7066, -1807.73, -143.841, -1804.6, -189.291, -539.683, -193.95, -542.012, -559.681, -1070.81, -562.011, -1813.92, -562.011 )
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 
