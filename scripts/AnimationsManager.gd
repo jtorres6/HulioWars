@@ -50,35 +50,35 @@ func _process(delta):
 	if -22.5 < rotAngle and rotAngle < 22.5:
 		currentAnimation = 0
 		inverted = false
-		logicRoot.get_node('Weapon/Sprite').z_index = 0
+		logicRoot.get_node('Weapon/Sprite').z_index = 4
 	elif -67.5 < rotAngle and rotAngle < -22.5:
 		currentAnimation = 1
 		inverted = false
-		logicRoot.get_node('Weapon/Sprite').z_index = -1
+		logicRoot.get_node('Weapon/Sprite').z_index = 2
 	elif -112.5 < rotAngle and rotAngle < -67.5:
 		currentAnimation = 3
 		inverted = false
-		logicRoot.get_node('Weapon/Sprite').z_index = -1
+		logicRoot.get_node('Weapon/Sprite').z_index = 2
 	elif -157.5 < rotAngle and rotAngle < -112.5:
 		currentAnimation = 1
 		inverted = true
-		logicRoot.get_node('Weapon/Sprite').z_index = -1
+		logicRoot.get_node('Weapon/Sprite').z_index = 2
 	elif 22.5 < rotAngle and rotAngle < 67.5:
 		currentAnimation = 2
 		inverted = false
-		logicRoot.get_node('Weapon/Sprite').z_index = 0
+		logicRoot.get_node('Weapon/Sprite').z_index = 4
 	elif 67.5 < rotAngle and rotAngle < 112.5:
 		currentAnimation = 4
 		inverted = false
-		logicRoot.get_node('Weapon/Sprite').z_index = 0
+		logicRoot.get_node('Weapon/Sprite').z_index = 4
 	elif 112.5 < rotAngle and rotAngle < 157.5:
 		currentAnimation = 2
 		inverted = true
-		logicRoot.get_node('Weapon/Sprite').z_index = 0
+		logicRoot.get_node('Weapon/Sprite').z_index = 4
 	elif rotAngle < -157.5 or rotAngle > 157.5:
 		currentAnimation =  0
 		inverted = true
-		logicRoot.get_node('Weapon/Sprite').z_index = 0
+		logicRoot.get_node('Weapon/Sprite').z_index = 4
 		
 	SelectAnimation()
 	

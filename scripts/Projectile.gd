@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var damage = 50
+var damage = 20
 var xdirection
 var ydirection 
 var SPEED = 800

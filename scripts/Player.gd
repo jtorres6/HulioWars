@@ -23,8 +23,9 @@ const ACCELERATION = 1200
 const DECELERATION = 2000
 
 #********** Another control params *******************
-
-
+const MOCHAZO_DAMAGE = 50
+const BONUS_FRIEND = -30
+const BONUS_ENEMY = 10
 
 #*****************************************************
 
@@ -92,3 +93,32 @@ func _physics_process(delta):
 func _on_AudioStreamPlayer2D_finished():
 	$AudioStreamPlayer2D.play()
 	pass # replace with function body
+
+func _on_Area2D_body_entered(body):
+	print("[Colision] ", body.name)
+	if body.name.find("NPC") != -1:
+		self.life -= body.DAMAGE
+		body.onHitDelay = true
+		body.heColisionado = true
+		body.get_node("HitTimer").start()
+		
+		if self.life <= 0:
+			print("MUERTOOOOOOOOOO") # replace with function body
+
+func _on_MeleeAtack_body_entered(body):
+	if body.name.find("NPC") != -1:
+		body.life -= MOCHAZO_DAMAGE
+		if body.life <= 0:
+			get_parent().enemiesInMap -= 1
+			body.queue_free()
+			var scoreBonus
+			
+			if self.rol == self.rol:
+				self.scoreBoard -= BONUS_FRIEND
+				self.score[(self.rol+1)%2] += BONUS_ENEMY
+			else:
+				self.scoreBoard += BONUS_ENEMY
+				self.score[self.rol] += BONUS_ENEMY
+				
+			print("ScoreBoard: ", self.scoreBoard)
+			print("Score: ", self.score)

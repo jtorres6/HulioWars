@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DirectionManager.gd" type="Script" id=2]
@@ -12,10 +12,13 @@
 [ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 9mdpi.png" type="Texture" id=10]
 [ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 7mdpi.png" type="Texture" id=11]
 [ext_resource path="res://sprites/Personaje_principal/REPOSO/Malo/Mesa de trabajo 6mdpi.png" type="Texture" id=12]
-[ext_resource path="res://scripts/Weapon.gd" type="Script" id=13]
-[ext_resource path="res://sprites/Personaje_principal/Personaje_Arma-02.png" type="Texture" id=14]
-[ext_resource path="res://scripts/AnimationsManager.gd" type="Script" id=15]
-[ext_resource path="res://sounds/flotación.wav" type="AudioStream" id=16]
+[ext_resource path="res://sounds/flotación.wav" type="AudioStream" id=13]
+[ext_resource path="res://scripts/Weapon.gd" type="Script" id=14]
+[ext_resource path="res://sprites/Personaje_principal/Personaje_Arma-02.png" type="Texture" id=15]
+[ext_resource path="res://sprites/Efectos/A_C_C_Protagonista/A_C_C_Protagonista.png" type="Texture" id=16]
+[ext_resource path="res://sprites/Efectos/A_C_C_Protagonista/A_C_C_Protagonista02.png" type="Texture" id=17]
+[ext_resource path="res://sprites/Efectos/A_C_C_Protagonista/A_C_C_Protagonista03.png" type="Texture" id=18]
+[ext_resource path="res://scripts/AnimationsManager.gd" type="Script" id=19]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -23,7 +26,17 @@ custom_solver_bias = 0.0
 radius = 20.959
 height = 25.9857
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="CapsuleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -31,16 +44,18 @@ height = 20.0
 
 [node name="Player" type="KinematicBody2D" index="0"]
 
+z_index = 3
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 4
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-scale = Vector2( 1, 1.88985 )
+position = Vector2( 9.80562, 5.15981 )
+scale = Vector2( 2.30147, 1.88985 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -56,7 +71,8 @@ __meta__ = {
 
 [node name="Visuals" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
+z_index = 3
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Bueno" type="Node2D" parent="Visuals" index="0"]
 
@@ -79,7 +95,7 @@ _sections_unfolded = [ "Transform" ]
 visible = false
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="UP" type="Sprite" parent="Visuals/Bueno" index="3"]
 
@@ -152,11 +168,25 @@ wait_time = 0.3
 one_shot = false
 autostart = false
 
-[node name="Weapon" type="Node2D" parent="." index="6"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="6"]
+
+position = Vector2( 26.9999, -2.89083e-006 )
+rotation = -0.349066
+stream = ExtResource( 13 )
+volume_db = -30.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Weapon" type="Node2D" parent="." index="7"]
 
 position = Vector2( 9.93036, 0.273796 )
-script = ExtResource( 13 )
-_sections_unfolded = [ "Transform" ]
+z_index = 4
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -165,7 +195,7 @@ __meta__ = {
 
 position = Vector2( -9.93036, 9.7262 )
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 centered = false
 offset = Vector2( -480, -500 )
 _sections_unfolded = [ "Offset", "Transform", "Z Index" ]
@@ -177,17 +207,31 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 2
+collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Sprite/MeleeAtack" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( 52.0214, 27.4111, 52.9017, -27.6047, 44.5393, -36.4072, 65.2252, -29.8053, 73.1475, -15.7213, 78.429, -0.316841, 73.1475, 17.2882, 63.9048, 31.8124, 47.6201, 40.1748 )
+polygon = PoolVector2Array( 200, -250, 250, -100, 250, 50, 250, 150, 200, 250, 350, 200, 400, 100, 400, 1.90735e-005, 400, -100, 350, -200 )
+_sections_unfolded = [ "Z Index" ]
 
-[node name="Area2D" type="Area2D" parent="." index="7"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Weapon/Sprite" index="1"]
 
-editor/display_folded = true
+visible = false
+position = Vector2( 150, -50 )
+rotation = -0.349066
+scale = Vector2( 5, 5 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="." index="8"]
+
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -195,21 +239,17 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Polygon2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 position = Vector2( -5.07911, 2.12807 )
 scale = Vector2( 3.28867, 2.15526 )
-shape = SubResource( 2 )
-
-[node name="AnimationsManager" type="Node2D" parent="." index="8"]
-
-script = ExtResource( 15 )
+shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="9"]
 
-stream = ExtResource( 16 )
+stream = null
 volume_db = -20.02
 pitch_scale = 1.0
 autoplay = true
@@ -218,6 +258,10 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
+[node name="AnimationsManager" type="Node2D" parent="." index="10"]
+
+script = ExtResource( 19 )
+
 [connection signal="timeout" from="ShootDelay" to="Weapon" method="_on_ShootDelay_timeout"]
 
 [connection signal="timeout" from="MochazoDelay" to="Weapon" method="_on_MochazoDelay_timeout"]
@@ -225,5 +269,7 @@ area_mask = 1
 [connection signal="timeout" from="MochazoTimer" to="Weapon" method="_on_MochazoTimer_timeout"]
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 
