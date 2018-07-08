@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Fade.tscn" type="PackedScene" id=2]
-[ext_resource path="res://sprites/Menu_ilustracion.png" type="Texture" id=3]
-[ext_resource path="res://sounds/MJW8Cyberpunk_Menu.wav" type="AudioStream" id=4]
+[ext_resource path="res://fonts/CodaCaption-ExtraBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Fade.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/Menu_ilustracion.png" type="Texture" id=4]
+[ext_resource path="res://sounds/MJW8Cyberpunk_Menu.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -17,6 +18,22 @@ use_mipmaps = false
 use_filter = false
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 125
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 120
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Settings" ]
 
 [node name="Menu" type="CanvasLayer" index="0"]
 
@@ -33,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -860.0
-margin_top = -310.0
-margin_right = -653.0
-margin_bottom = -240.0
+margin_left = 451.0
+margin_top = 284.0
+margin_right = 658.0
+margin_bottom = 354.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -44,7 +61,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.780392, 0.713726, 0.705882, 1 )
+custom_colors/font_color = Color( 1, 0.71875, 0.969238, 1 )
 toggle_mode = false
 action_mode = 0
 enabled_focus_mode = 0
@@ -61,10 +78,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -860.0
-margin_top = -400.0
-margin_right = -653.0
-margin_bottom = -330.0
+margin_left = 448.0
+margin_top = 214.0
+margin_right = 655.0
+margin_bottom = 284.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -72,7 +89,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.780392, 0.713726, 0.705882, 1 )
+custom_colors/font_color = Color( 1, 0.71875, 0.969238, 1 )
 toggle_mode = false
 action_mode = 0
 enabled_focus_mode = 0
@@ -83,24 +100,24 @@ flat = true
 align = 0
 _sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="Title" type="Button" parent="." index="2"]
+[node name="Title2" type="Button" parent="." index="2"]
 
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 240.0
-margin_top = -490.0
-margin_right = 531.0
-margin_bottom = -420.0
+margin_left = -474.0
+margin_top = -493.0
+margin_right = 191.0
+margin_bottom = -278.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.780392, 0.713726, 0.705882, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.964844, 0.0376892, 0.863436, 1 )
 toggle_mode = false
 action_mode = 0
 enabled_focus_mode = 0
@@ -109,18 +126,46 @@ group = null
 text = "KARMACITY"
 flat = true
 align = 0
-_sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts" ]
+_sections_unfolded = [ "Rect", "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="Exit" type="Button" parent="." index="3"]
+[node name="Title" type="Button" parent="." index="3"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -463.0
+margin_top = -479.0
+margin_right = 111.0
+margin_bottom = -294.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0.71875, 0.969238, 1 )
+toggle_mode = false
+action_mode = 0
+enabled_focus_mode = 0
+shortcut = null
+group = null
+text = "KARMACITY"
+flat = true
+align = 0
+_sections_unfolded = [ "Rect", "Visibility", "custom_colors", "custom_fonts" ]
+
+[node name="Exit" type="Button" parent="." index="4"]
 
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -204.0
-margin_top = -90.0
-margin_right = -22.0
-margin_bottom = -20.0
+margin_left = -530.0
+margin_top = -107.0
+margin_right = -348.0
+margin_bottom = -37.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -128,7 +173,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.780392, 0.713726, 0.705882, 1 )
+custom_colors/font_color = Color( 1, 0.71875, 0.969238, 1 )
 toggle_mode = false
 action_mode = 0
 enabled_focus_mode = 0
@@ -139,22 +184,22 @@ flat = true
 align = 2
 _sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="Fade" parent="." index="4" instance=ExtResource( 2 )]
+[node name="Fade" parent="." index="5" instance=ExtResource( 3 )]
 
 margin_right = 1940.0
 margin_bottom = 1135.0
 
-[node name="Menu 1-01" type="Sprite" parent="." index="5"]
+[node name="Menu 1-01" type="Sprite" parent="." index="6"]
 
 position = Vector2( 955, 564.911 )
 scale = Vector2( 1.02604, 1.05987 )
-z_index = -1
-texture = ExtResource( 3 )
+z_index = -3
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="MenuTheme" type="AudioStreamPlayer" parent="." index="6"]
+[node name="MenuTheme" type="AudioStreamPlayer" parent="." index="7"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 volume_db = -6.25
 pitch_scale = 1.0
 autoplay = true
@@ -164,8 +209,6 @@ bus = "Master"
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 
 [connection signal="pressed" from="Play" to="." method="_on_PlayButton_pressed"]
-
-[connection signal="pressed" from="Title" to="." method="_on_PlayButton_pressed"]
 
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
 
