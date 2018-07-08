@@ -124,7 +124,7 @@ func _on_ScapeArea_body_exited(enemy):
 
 func _on_AlertArea_body_entered(enemy):
 	print("Hello ", enemy.name)
-	if enemy.rol != self.rol:
+	if enemy.name == "Player" and enemy.rol != self.rol:
 		currentEnemy = enemy
 		alerted = true
 		comeback = false

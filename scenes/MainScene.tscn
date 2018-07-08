@@ -45,9 +45,10 @@ script = ExtResource( 1 )
 
 position = Vector2( 130, -400 )
 scale = Vector2( 0.65, 0.65 )
+z_index = 1
 collision_layer = 4
 collision_mask = 4
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="NPC" parent="." index="1" instance=ExtResource( 3 )]
 
@@ -105,8 +106,6 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="7"]
 
-editor/display_folded = true
-
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D" index="0"]
 
 navpoly = SubResource( 1 )
@@ -161,7 +160,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Suelo_Mapa_noche" type="Sprite" parent="." index="13"]
 
-position = Vector2( -62.5039, -6.12384 )
+position = Vector2( -57.3416, -3.54266 )
 scale = Vector2( 0.974678, 0.974678 )
 texture = ExtResource( 9 )
 _sections_unfolded = [ "Transform" ]
@@ -409,10 +408,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="55"]
 
-visible = false
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 4
+collision_mask = 4
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -422,7 +420,37 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -1812.39, -898.598, 1663.22, -921.893, 1663.22, -558.491, 423.926, -558.491, 423.926, -274.293, 461.198, -316.224, 787.328, -320.883, 787.328, -153.159, 1141.41, -153.159, 1141.41, -209.067, 1663.22, -213.726, 1663.22, 28.5422, 1556.06, 28.5422, 866.531, 47.1782, 866.531, 317.4, 1099.48, 308.082, 1104.14, 783.3, 1663.22, 773.982, 1663.22, 1067.5, 577.673, 1062.84, 568.355, 517.737, 363.359, 499.101, 363.359, 242.856, -51.2916, 247.515, -51.2916, 410.58, -368.104, 410.58, -368.104, 578.304, -512.532, 587.622, -517.191, 1058.18, -1807.73, 1053.52, -1807.73, 760.005, -1793.76, 713.415, -1052.98, 718.074, -1052.98, 559.668, -1062.29, 508.419, -927.183, 508.419, -922.524, 84.4503, -1695.92, 79.7914, -1807.73, -22.7066, -1807.73, -143.841, -1804.6, -189.291, -539.683, -193.95, -542.012, -559.681, -1070.81, -562.011, -1813.92, -562.011 )
+polygon = PoolVector2Array( -1886.56, -574.022, -387.911, -576.882, -393.631, -536.842, -539.492, -539.702, -539.492, -193.64, -1809.34, -187.919 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( 435.775, -574.022, 438.635, -165.039, 1668.44, -162.179, 1662.72, -565.442 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D" index="2"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1659.86, -562.582, 1722.78, -562.582, 1722.78, -991.585, -1935.18, -980.145, -1935.18, -568.302, -1883.7, -568.302, -1880.84, -897.204, 1662.72, -891.484 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D" index="3"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1665.58, -167.899, 1722.78, -165.039, 1728.5, 810.227, 1682.74, 767.327, 1102.16, 764.467, 1102.16, 555.686, 976.318, 555.686, 982.038, 338.324, 919.118, 344.044, 864.778, 344.044, 861.918, 235.363, 547.315, 241.083, 550.175, 18.0019, 1665.58, 20.8619 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D" index="4"]
+
+build_mode = 0
+polygon = PoolVector2Array( 1665.58, 775.907, 1725.64, 773.047, 1722.78, 1119.11, -1806.48, 1119.11, -1803.62, 1053.33, -530.912, 1044.75, -522.332, 595.726, -365.031, 587.146, -362.171, 412.685, -339.291, 386.944, -342.151, 235.363, 315.654, 226.783, 355.694, 255.384, 369.994, 501.345, 558.756, 515.645, 573.056, 1053.33, 1668.44, 1047.61 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D" index="5"]
+
+build_mode = 0
+polygon = PoolVector2Array( -1806.48, 1044.75, -1806.78, 737.386, -1058.24, 737.386, -1051.44, 552.826, -928.455, 552.826, -919.874, 249.663, -522.332, 243.943, -519.472, 66.6223, -1097.2, 66.6223, -1105.78, 86.6424, -1700.66, 78.0623, -1806.48, -19.1783, -1809.34, -145.019, -1863.68, -147.879, -1866.15, 734.805 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D" index="6"]
+
+build_mode = 0
+polygon = PoolVector2Array( -1313.78, -679.675, -1313.78, -638.376, -1231.18, -640.957, -1233.76, -674.513 )
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 
